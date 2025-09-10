@@ -1,6 +1,6 @@
-package med.voll.paciente;
+package med.voll.domain.paciente;
 
-import med.voll.endereco.Endereco;
+import med.voll.domain.endereco.Endereco;
 
 public record DadosDetalhamentoPaciente(
         Long id,

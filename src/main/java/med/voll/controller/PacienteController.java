@@ -2,10 +2,7 @@ package med.voll.controller;
 
 
 import jakarta.validation.Valid;
-import med.voll.medico.DadosAtualizacaoMedico;
-import med.voll.medico.DadosDetalhamentoMedico;
-import med.voll.paciente.*;
-import org.apache.coyote.Response;
+import med.voll.domain.paciente.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,10 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URI;
 
 @RestController
 @RequestMapping ("/pacientes")
@@ -28,7 +22,7 @@ public class PacienteController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrar (@RequestBody @Valid  DadosCadastroPaciente dados,  UriComponentsBuilder uriBuilder) {
+    public ResponseEntity cadastrar (@RequestBody @Valid DadosCadastroPaciente dados, UriComponentsBuilder uriBuilder) {
        var paciente = new Paciente(dados) ;
        repository.save(paciente);
        var uri = uriBuilder.path("/pacientes/{ìd}").buildAndExpand(paciente.getId()).toUri();
