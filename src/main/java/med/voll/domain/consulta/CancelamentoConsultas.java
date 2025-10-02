@@ -7,14 +7,13 @@ import org.springframework.stereotype.Service;
 @Service
 public class CancelamentoConsultas {
 
-    @Autowired
-    private ConsultaRepository consultaRepository;
+  @Autowired private ConsultaRepository consultaRepository;
 
-    public void cancelar(DadosCancelamentoConsulta dados) {
-       if (!consultaRepository.existsById(dados.idConsulta())) {
-           throw new ValidacaoException("Id da consulta informado não existe!");
-       }
-       var consulta = consultaRepository.getReferenceById(dados.idConsulta());
-       consulta.cancelar(dados.motivo());
+  public void cancelar(DadosCancelamentoConsulta dados) {
+    if (!consultaRepository.existsById(dados.idConsulta())) {
+      throw new ValidacaoException("Id da consulta informado não existe!");
     }
+    var consulta = consultaRepository.getReferenceById(dados.idConsulta());
+    consulta.cancelar(dados.motivo());
+  }
 }

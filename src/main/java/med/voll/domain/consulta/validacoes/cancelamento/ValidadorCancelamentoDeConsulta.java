@@ -1,5 +1,7 @@
-package med.voll.domain.consulta.validacoes;
+package med.voll.domain.consulta.validacoes.cancelamento;
+
+import med.voll.domain.consulta.DadosCancelamentoConsulta;
 
 public interface ValidadorCancelamentoDeConsulta {
-    void cancelar(Long id);
+  void validar(DadosCancelamentoConsulta dados);
 }
