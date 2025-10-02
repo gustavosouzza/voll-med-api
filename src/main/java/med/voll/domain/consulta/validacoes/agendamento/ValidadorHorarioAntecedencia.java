@@ -1,18 +1,19 @@
-package med.voll.domain.consulta.validacoes;
+package med.voll.domain.consulta.validacoes.agendamento;
 
 import med.voll.domain.consulta.DadosAgendamentoConsulta;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component("ValidadorHorarioAntecedenciaAgendamento")
 public class ValidadorHorarioAntecedencia implements ValidadorAgendamentoDeConsulta {
-    public void validar(DadosAgendamentoConsulta dadosAgendamentoConsulta) {
-        var dataConsulta = dadosAgendamentoConsulta.data();
-        var agora = java.time.LocalDateTime.now();
+  public void validar(DadosAgendamentoConsulta dadosAgendamentoConsulta) {
+    var dataConsulta = dadosAgendamentoConsulta.data();
+    var agora = java.time.LocalDateTime.now();
 
-        var diferencaEmMinutos = java.time.Duration.between(agora, dataConsulta).toMinutes();
+    var diferencaEmMinutos = java.time.Duration.between(agora, dataConsulta).toMinutes();
 
-        if (diferencaEmMinutos < 30) {
-            throw new RuntimeException("Consulta deve ser agendada com antecedência mínima de 30 minutos.");
-        }
+    if (diferencaEmMinutos < 30) {
+      throw new RuntimeException(
+          "Consulta deve ser agendada com antecedência mínima de 30 minutos.");
     }
+  }
 }
